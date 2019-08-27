@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package calendar_service;
+
+import "google/protobuf/timestamp.proto";
+
+message CalendarEvent {
+    int64 id = 1;
+    string name = 2;
+    EventType type = 3;
+    google.protobuf.Timestamp created = 4;
+    google.protobuf.Timestamp updated = 5;
+
+    enum EventType {
+        TASK = 0;
+        MEETING = 1;
+    }
+}
