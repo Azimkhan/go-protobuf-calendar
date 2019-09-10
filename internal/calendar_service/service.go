@@ -1,3 +1,4 @@
+//go:generate protoc --go_out=. --proto_path=../../api/protobuf calendar.proto
 package calendar_service
 
 import (
@@ -5,6 +6,13 @@ import (
 	"github.com/golang/protobuf/ptypes"
 	"sync"
 )
+
+type CalendarService interface {
+	Create(event *CalendarEvent) error
+	Update(event *CalendarEvent) error
+	Delete(id int64) error
+	Get(id int64) (*CalendarEvent, error)
+}
 
 type MapCalendarService struct {
 	db     sync.Map
